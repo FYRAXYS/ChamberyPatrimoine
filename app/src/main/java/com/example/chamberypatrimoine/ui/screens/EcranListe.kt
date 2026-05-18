@@ -36,20 +36,19 @@ fun EcranListe(
     val elements by viewModel.elementsAffiches.collectAsState()
 
 
-    // Astuce : On récupère le nom de la catégorie depuis le premier élément de la liste
+    // on récupère le nom de la catégorie depuis le premier élément de la liste
     val nomCategorie = elements.firstOrNull()?.categorie?.label ?: stringResource(id = R.string.titre_tous_elements)
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background) // Le fond général devient Jaune Pâle
+            .background(MaterialTheme.colorScheme.background)
             .statusBarsPadding()
-        //.verticalScroll(rememberScrollState())
     ) {
-        // --- 1. L'EN-TÊTE (Header) ---
+        // Bandeau au sommet de l'écran
         Surface(
             color = MaterialTheme.colorScheme.surface,
-            shadowElevation = 8.dp, // Ajoute une petite ombre sous la barre
+            shadowElevation = 8.dp,
             modifier = Modifier
                 .fillMaxWidth()
                 .zIndex(1f)
@@ -60,7 +59,6 @@ fun EcranListe(
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Le bouton avec les angles moins arrondis
                 Button(
                     onClick = onNavigateBack,
                     shape = RoundedCornerShape(4.dp),
@@ -69,7 +67,6 @@ fun EcranListe(
                     Text(stringResource(id = R.string.btn_retour_accueil), fontWeight = FontWeight.Bold)
                 }
 
-                // La ligne de séparation verticale
                 HorizontalDivider(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
@@ -77,7 +74,7 @@ fun EcranListe(
                         .width(1.dp), thickness = DividerDefaults.Thickness, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
                 )
 
-                // Le titre de la catégorie
+                // titre de la catégorie
                 Text(
                     text = nomCategorie,
                     style = MaterialTheme.typography.titleMedium,
@@ -86,7 +83,7 @@ fun EcranListe(
             }
         }
 
-        // --- 2. LA LISTE ---
+        // Liste des éléments
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(16.dp),
@@ -101,28 +98,26 @@ fun EcranListe(
 
 @Composable
 fun CartePatrimoine(element: ElementPatrimoine, onClick: () -> Unit) {
-    // La carte est maintenant blanche avec une légère bordure grise
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick() },
-        shape = RoundedCornerShape(4.dp), // Coins légèrement arrondis comme la maquette
+        shape = RoundedCornerShape(4.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)), // Bordure gris clair
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
-        // Remplacement de Column par Row pour mettre texte à gauche, image à droite
+
         Row(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
-            verticalAlignment = Alignment.Top // Aligne le contenu en haut
+            verticalAlignment = Alignment.Top
         ) {
 
-            // -- PARTIE GAUCHE (Textes) --
             Column(
                 modifier = Modifier
-                    .weight(1f) // Prend tout l'espace disponible avant l'image
+                    .weight(1f)
                     .padding(end = 16.dp)
             ) {
                 Text(
@@ -138,24 +133,22 @@ fun CartePatrimoine(element: ElementPatrimoine, onClick: () -> Unit) {
                     text = element.description,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
-                    maxLines = 3, // Coupe le texte s'il est trop long avec des "..."
+                    maxLines = 3, // Coupe le texte s'il est trop long
                     overflow = TextOverflow.Ellipsis
                 )
             }
 
-            // -- PARTIE DROITE (Image carrée) --
             if (element.idImageRessource != null) {
                 Image(
                     painter = painterResource(id = element.idImageRessource),
                     contentDescription = stringResource(id = R.string.cd_image_patrimoine, element.nom),
                     modifier = Modifier
-                        .size(100.dp) // Force l'image à être un carré parfait
-                        .background(MaterialTheme.colorScheme.onSurface), // Fond gris si l'image a de la transparence
-                    contentScale = ContentScale.Crop // Recadre l'image pour remplir le carré
+                        .size(100.dp)
+                        .background(MaterialTheme.colorScheme.onSurface), // fond gris si l'image est transparente
+                    contentScale = ContentScale.Crop
                 )
             } else {
                 // Petit bloc gris de remplacement si l'élément n'a pas d'image
-                // (correspond au carré vide de ta maquette)
                 Box(
                     modifier = Modifier
                         .size(100.dp)

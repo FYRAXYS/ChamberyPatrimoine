@@ -15,16 +15,16 @@ import com.example.chamberypatrimoine.viewmodel.PatrimoineViewModel
 fun ActivityNavigation(viewModel: PatrimoineViewModel) {
     val navController = rememberNavController()
 
-    // Le point de départ (startDestination) est maintenant "accueil"
+    // Le point de départ de l'application est l'accueil (EcranAccueil.kt)
     NavHost(navController = navController, startDestination = "accueil") {
 
-        // Nouvelle Route : L'accueil avec les catégories
+        // Route : L'accueil
         composable("accueil") {
             EcranAccueil(
                 onChoixCategorie = { categorie ->
-                    // 1. On demande au ViewModel de filtrer la liste
+                    // on filtre en fonction des catégories
                     viewModel.filterByCategory(categorie)
-                    // 2. On passe à l'écran principal (la liste)
+                    // on passe à l'écran avec la liste des éléments
                     navController.navigate("liste")
                 }
             )
@@ -33,23 +33,23 @@ fun ActivityNavigation(viewModel: PatrimoineViewModel) {
         // Route : La liste
         composable("liste") {
             EcranListe (
-                viewModel = viewModel,
+                viewModel = viewModel, // le ViewModel qui contient les éléments
                 onNavigateToDetail = { idElement ->
                     navController.navigate("detail/$idElement")
                 },
-                onNavigateBack = { navController.popBackStack() }
+                onNavigateBack = { navController.popBackStack() } // on enlève la page de l'élément de la pile
             )
         }
 
         // Route : Le détail
         composable("detail/{elementId}") { backStackEntry ->
-            val idString = backStackEntry.arguments?.getString("elementId")
+            val idString = backStackEntry.arguments?.getString("elementId") // on récupère l'ID de l'élément cliqué
             val id = idString?.toIntOrNull()
 
             val elements by viewModel.elementsAffiches.collectAsState()
             val elementChoisi = elements.find { it.id == id }
 
-            if (elementChoisi != null) {
+            if (elementChoisi != null) { // Si l'ID correspond bien à un élément
                 EcranDetail(
                     element = elementChoisi,
                     onNavigateBack = { navController.popBackStack() }

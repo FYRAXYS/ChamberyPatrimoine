@@ -1,6 +1,5 @@
 package com.example.chamberypatrimoine.ui.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -33,15 +32,14 @@ fun EcranAccueil(onChoixCategorie: (CategoriePatrimoine) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .verticalScroll(rememberScrollState()) // Le scroll est bien là !
+            .verticalScroll(rememberScrollState()) // pour permettre un scroll sur la page
     ) {
-        // --- PARTIE HAUTE (Jaune Pale) ---
+        // Partie haute (Titre et logo)
         Column(
             modifier = Modifier
-                // SUPPRESSION DU WEIGHT ICI
                 .fillMaxWidth()
                 .background(if (isSystemInDarkTheme()) YellowDark else YellowPale)
-                .heightIn(min = hauteurEcran * 0.4f)
+                .heightIn(min = hauteurEcran * 0.4f) // Hauteur minimale de l'écran
                 .padding(horizontal = 24.dp),
             verticalArrangement = Arrangement.Center
         ) {
@@ -55,7 +53,7 @@ fun EcranAccueil(onChoixCategorie: (CategoriePatrimoine) -> Unit) {
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Black,
                     lineHeight = 40.sp,
-                    modifier = Modifier.weight(1f) // Celui-ci est autorisé car il est horizontal (dans une Row) !
+                    modifier = Modifier.weight(1f)
                 )
 
                 Image(
@@ -66,16 +64,15 @@ fun EcranAccueil(onChoixCategorie: (CategoriePatrimoine) -> Unit) {
             }
         }
 
-        // --- PARTIE BASSE ---
+        // Partie basse (liste des boutons)
         Column(
             modifier = Modifier
-                // SUPPRESSION DU WEIGHT ICI
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp, vertical = 24.dp), // Ajout d'un padding vertical
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CategoriePatrimoine.entries.forEach { categorie ->
+            CategoriePatrimoine.entries.forEach { categorie -> // on créé autant de boutons que de catégorie
                 Button(
                     onClick = { onChoixCategorie(categorie) },
                     modifier = Modifier
@@ -97,7 +94,7 @@ fun EcranAccueil(onChoixCategorie: (CategoriePatrimoine) -> Unit) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(48.dp)) // Un petit espace tout en bas pour ne pas coller à l'écran
+            Spacer(modifier = Modifier.height(48.dp)) // petit espace pour ne pas coller à l'écran
         }
     }
 }
