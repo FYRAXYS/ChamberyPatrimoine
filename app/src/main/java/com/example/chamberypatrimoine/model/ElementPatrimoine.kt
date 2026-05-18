@@ -5,8 +5,8 @@ class ElementPatrimoine (
     val nom: String,
     val description: String,
     val categorie: CategoriePatrimoine,
-    val epoque: String,
-    val lieu: String,
+    val epoque: String? = null,
+    val lieu: String? = null,
 
     val idImageRessource: Int? = null
 ) {}
