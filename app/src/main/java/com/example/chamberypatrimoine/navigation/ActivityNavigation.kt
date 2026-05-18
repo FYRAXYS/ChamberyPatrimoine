@@ -12,7 +12,7 @@ import com.example.chamberypatrimoine.ui.screens.EcranListe
 import com.example.chamberypatrimoine.viewmodel.PatrimoineViewModel
 
 @Composable
-fun AppNavigation(viewModel: PatrimoineViewModel) {
+fun ActivityNavigation(viewModel: PatrimoineViewModel) {
     val navController = rememberNavController()
 
     // Le point de départ (startDestination) est maintenant "accueil"

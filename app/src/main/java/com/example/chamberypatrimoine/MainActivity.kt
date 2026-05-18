@@ -5,43 +5,34 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.chamberypatrimoine.navigation.ActivityNavigation
 import com.example.chamberypatrimoine.ui.theme.ChamberyPatrimoineTheme
+import com.example.chamberypatrimoine.viewmodel.PatrimoineViewModel
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             ChamberyPatrimoineTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background //détermine la couleur du fond
+                ) {
+
+                    // créé ou récupère (si on change d'orientation) le ViewModel
+                    val patrimoineViewModel: PatrimoineViewModel = viewModel()
+
+                    // on passe le ViewModel à l'écran principal pour qu'il puisse observer les données
+                    ActivityNavigation(viewModel = patrimoineViewModel)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ChamberyPatrimoineTheme {
-        Greeting("Android")
     }
 }
