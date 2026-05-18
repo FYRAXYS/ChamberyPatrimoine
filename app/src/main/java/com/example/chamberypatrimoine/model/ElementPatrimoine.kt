@@ -1,12 +1,12 @@
 package com.example.chamberypatrimoine.model
 
 class ElementPatrimoine (
-    val id: String,
+    val id: Int,
     val nom: String,
     val description: String,
     val categorie: CategoriePatrimoine,
     val epoque: String,
     val lieu: String,
 
-    // TODO: image
+    val idImageRessource: Int? = null
 ) {}
