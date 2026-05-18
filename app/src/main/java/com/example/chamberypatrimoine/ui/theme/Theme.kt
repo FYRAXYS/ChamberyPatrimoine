@@ -23,11 +23,12 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    // TODO: adapter les couleurs pour le mode clair
+    primary = YellowBright,
+    onPrimary = Black,
+    background = White,
+    onBackground = Gray,
+    surface = White,
+    onSurface = Gray
 
     /* Other default colors to override
     onSecondary = Color.White,
@@ -39,7 +40,7 @@ private val LightColorScheme = lightColorScheme(
 fun ChamberyPatrimoineTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
