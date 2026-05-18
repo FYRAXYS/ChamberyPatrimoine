@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.LineBreak
 import com.example.chamberypatrimoine.R
 
 @Composable
-fun EcranDetail(element: ElementPatrimoine) {
+fun EcranDetail(element: ElementPatrimoine, onNavigateBack: () -> Unit) {
 
     // Fond global de l'écran
     Column(
@@ -46,7 +46,7 @@ fun EcranDetail(element: ElementPatrimoine) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Button(
-                    onClick = {}, // TODO: gérer le retour
+                    onClick = onNavigateBack,
                     shape = RoundedCornerShape(4.dp),
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
                 ) {
