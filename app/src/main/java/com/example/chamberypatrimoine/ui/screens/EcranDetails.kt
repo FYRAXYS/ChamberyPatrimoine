@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.chamberypatrimoine.model.ElementPatrimoine
@@ -50,7 +51,7 @@ fun EcranDetail(element: ElementPatrimoine, onNavigateBack: () -> Unit) {
                     shape = RoundedCornerShape(4.dp),
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
                 ) {
-                    Text("Retour à la liste", fontWeight = FontWeight.Bold)
+                    Text(stringResource(id = R.string.btn_retour_liste), fontWeight = FontWeight.Bold)
                 }
 
                 HorizontalDivider(
@@ -97,7 +98,7 @@ fun EcranDetail(element: ElementPatrimoine, onNavigateBack: () -> Unit) {
                 if (element.idImageRessource != null) {
                     Image(
                         painter = painterResource(id = element.idImageRessource),
-                        contentDescription = "Image de ${element.nom}",
+                        contentDescription = stringResource(id = R.string.cd_image_patrimoine, element.nom),
                         modifier = Modifier
                             .size(130.dp)
                             .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)),
@@ -133,7 +134,7 @@ fun EcranDetail(element: ElementPatrimoine, onNavigateBack: () -> Unit) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Image(
                             painter = painterResource(id = R.drawable.icon_location),
-                            contentDescription = "Icône de lieu",
+                            contentDescription = stringResource(id = R.string.cd_icone_lieu),
                             modifier = Modifier.size(20.dp)
                         )
 
@@ -141,7 +142,7 @@ fun EcranDetail(element: ElementPatrimoine, onNavigateBack: () -> Unit) {
                         Spacer(modifier = Modifier.width(8.dp))
 
                         Text(
-                            text = "Lieu : ${element.lieu}",
+                            text = stringResource(id = R.string.format_lieu, element.lieu),
                             style = MaterialTheme.typography.bodyMedium,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -154,14 +155,14 @@ fun EcranDetail(element: ElementPatrimoine, onNavigateBack: () -> Unit) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Image(
                             painter = painterResource(id = R.drawable.icon_hourglass),
-                            contentDescription = "Icône d'époque",
+                            contentDescription = stringResource(id = R.string.cd_icone_epoque),
                             modifier = Modifier.size(20.dp)
                         )
 
                         Spacer(modifier = Modifier.width(8.dp))
 
                         Text(
-                            text = "Époque : ${element.epoque}",
+                            text = stringResource(id = R.string.format_epoque, element.epoque),
                             style = MaterialTheme.typography.bodyMedium,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface

@@ -1,5 +1,6 @@
 package com.example.chamberypatrimoine.ui.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.example.chamberypatrimoine.R
 import com.example.chamberypatrimoine.ui.theme.YellowPale
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.ui.res.stringResource
 import com.example.chamberypatrimoine.model.CategoriePatrimoine
 import com.example.chamberypatrimoine.ui.theme.YellowDark
 
@@ -49,7 +51,7 @@ fun EcranAccueil(onChoixCategorie: (CategoriePatrimoine) -> Unit) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Découvrir le\npatrimoine\nChambérien",
+                    text = stringResource(id = R.string.accueil_titre),
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Black,
                     lineHeight = 40.sp,
@@ -58,7 +60,7 @@ fun EcranAccueil(onChoixCategorie: (CategoriePatrimoine) -> Unit) {
 
                 Image(
                     painter = painterResource(id = R.drawable.blason_chambery),
-                    contentDescription = "Croix de Savoie",
+                    contentDescription = stringResource(id = R.string.cd_blason_savoie),
                     modifier = Modifier.size(120.dp)
                 )
             }

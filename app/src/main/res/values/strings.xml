@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Chambéry Patrimoine</string>
+
+    <string name="accueil_titre">Découvrir le\npatrimoine\nChambérien</string>
+    <string name="btn_retour_accueil">Retour à l\'accueil</string>
+    <string name="btn_retour_liste">Retour à la liste</string>
+    <string name="titre_tous_elements">Tous les éléments</string>
+
+    <string name="format_lieu">Lieu : %1$s</string>
+    <string name="format_epoque">Époque : %1$s</string>
+
+    <string name="cd_blason_savoie">Blason de la Croix de Savoie</string>
+    <string name="cd_icone_lieu">Icône de localisation</string>
+    <string name="cd_icone_epoque">Icône de sablier</string>
+    <string name="cd_image_patrimoine">Image de %1$s</string>
+
 </resources>

@@ -18,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import com.example.chamberypatrimoine.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -35,7 +37,7 @@ fun EcranListe(
 
 
     // Astuce : On récupère le nom de la catégorie depuis le premier élément de la liste
-    val nomCategorie = elements.firstOrNull()?.categorie?.label ?: "Tous les éléments"
+    val nomCategorie = elements.firstOrNull()?.categorie?.label ?: stringResource(id = R.string.titre_tous_elements)
 
     Column(
         modifier = Modifier
@@ -64,7 +66,7 @@ fun EcranListe(
                     shape = RoundedCornerShape(4.dp),
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
                 ) {
-                    Text("Retour à l'accueil", fontWeight = FontWeight.Bold)
+                    Text(stringResource(id = R.string.btn_retour_accueil), fontWeight = FontWeight.Bold)
                 }
 
                 // La ligne de séparation verticale
@@ -145,7 +147,7 @@ fun CartePatrimoine(element: ElementPatrimoine, onClick: () -> Unit) {
             if (element.idImageRessource != null) {
                 Image(
                     painter = painterResource(id = element.idImageRessource),
-                    contentDescription = "Image de ${element.nom}",
+                    contentDescription = stringResource(id = R.string.cd_image_patrimoine, element.nom),
                     modifier = Modifier
                         .size(100.dp) // Force l'image à être un carré parfait
                         .background(MaterialTheme.colorScheme.onSurface), // Fond gris si l'image a de la transparence
@@ -158,9 +160,7 @@ fun CartePatrimoine(element: ElementPatrimoine, onClick: () -> Unit) {
                     modifier = Modifier
                         .size(100.dp)
                         .background(Color(0xFFEAEAEA))
-                ) {
-                    // On pourrait ajouter une icône ici plus tard
-                }
+                ) {}
             }
         }
     }
