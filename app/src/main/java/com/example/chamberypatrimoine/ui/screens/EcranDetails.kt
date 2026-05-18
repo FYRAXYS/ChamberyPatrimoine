@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.chamberypatrimoine.model.ElementPatrimoine
 import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.text.style.LineBreak
+import com.example.chamberypatrimoine.R
 
 @Composable
 fun EcranDetail(element: ElementPatrimoine) {
@@ -92,7 +93,7 @@ fun EcranDetail(element: ElementPatrimoine) {
                         .padding(end = 16.dp)
                 )
 
-                // L'Image (plus grande que dans la liste)
+                // L'Image
                 if (element.idImageRessource != null) {
                     Image(
                         painter = painterResource(id = element.idImageRessource),
@@ -118,10 +119,56 @@ fun EcranDetail(element: ElementPatrimoine) {
                 text = element.description,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
-                lineHeight = MaterialTheme.typography.bodyLarge.lineHeight * 1.2f // Aère un peu la lecture
+                lineHeight = MaterialTheme.typography.bodyLarge.lineHeight * 1.2f
             )
 
-            // TODO: affichage dynamique si l'élément a lieu/époque
+            if (element.lieu != null || element.epoque != null) {
+                Spacer(modifier = Modifier.height(32.dp))
+                HorizontalDivider(Modifier, thickness = 1.dp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f))
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                if (element.lieu != null) {
+                    // Row pour l'icone et le texte côte à côte
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Image(
+                            painter = painterResource(id = R.drawable.icon_location),
+                            contentDescription = "Icône de lieu",
+                            modifier = Modifier.size(20.dp)
+                        )
+
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Text(
+                            text = "Lieu : ${element.lieu}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+
+                if (element.epoque != null) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Image(
+                            painter = painterResource(id = R.drawable.icon_hourglass),
+                            contentDescription = "Icône d'époque",
+                            modifier = Modifier.size(20.dp)
+                        )
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Text(
+                            text = "Époque : ${element.epoque}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                }
+            }
 
         }
     }
