@@ -18,7 +18,7 @@ Il se compose de 3 écrans distincts.
 ## Responsive Design
 L'application peut basculer librement en mode paysage ou portrait, et supporte les modes sombres et clairs.
 
-# Stack Technique
+## Stack Technique
 - Langage : Kotlin
 
 - UI : Jetpack Compose
